@@ -1,0 +1,25 @@
+<RCC>
+    <qresource prefix="/">
+        <file>add.png</file>
+        <file>check-mark.png</file>
+        <file>close.png</file>
+        <file>exchange.png</file>
+        <file>My project-1(5).png</file>
+        <file>djbobo.jpg</file>
+        <file>art.jpg</file>
+        <file>art4.jpg</file>
+        <file>Crasdant,_album_cover.jpg</file>
+        <file>Gwlad_I_Mi_2,_album_cover.jpg</file>
+        <file>Spiral_-_Allison_Crowe_(album_cover).jpg</file>
+        <file>The_Music_Of_Wales,_album_cover.jpg</file>
+        <file>free-icon-star-1828884.png</file>
+        <file>camera.png</file>
+        <file>contacts.png</file>
+        <file>list.png</file>
+        <file>music-notes.png</file>
+        <file>schedule.png</file>
+        <file>video-camera.png</file>
+        <file>whatsapp.png</file>
+        <file>bee.png</file>
+    </qresource>
+</RCC>

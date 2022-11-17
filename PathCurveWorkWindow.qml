@@ -1,0 +1,116 @@
+import QtQuick
+import QtQuick.Controls 2.15
+
+Window {
+    width: 300
+    height: 300
+    visible: true
+    title: qsTr("Menu-Carousel")
+    minimumHeight: 300
+    minimumWidth: 300
+
+    // Модель с данными
+    ListModel {
+        id: modelForPathCurveRect
+
+        ListElement {
+            file: "qrc:/add.png"
+            name: "Create"
+        }
+        ListElement {
+            file: "qrc:/close.png"
+            name: "Delete"
+        }
+        ListElement {
+            file: "qrc:/exchange.png"
+            name: "Change"
+        }
+        ListElement {
+            file: "qrc:/check-mark.png"
+            name: "Check"
+        }
+
+    }
+
+    // Делегат
+    Component {
+       id: iconDelegate
+       Column {
+            opacity: PathView.itemOpacity
+            scale: PathView.scaleItem
+
+            Image {
+                 id: iconImage
+                 width: 50
+                 height: 50
+                 antialiasing: true
+                 fillMode: Image.PreserveAspectFit
+                 anchors.horizontalCenter: textIcon.horizontalCenter
+                 source: model.file
+                 smooth: true
+            }
+
+            Text {
+                id: textIcon
+                text: model.name
+                font.pixelSize: 15
+            }
+        }
+     }
+
+
+    // Рамка для области c подписью
+    Rectangle {
+        id: pathCurveRect
+        width: 300
+        height: 300
+        color: "transparent"
+        border.color: "orange"
+
+        Text {
+            text: "PathCurve"
+            anchors.top: parent.top
+            anchors.left: parent.left
+            anchors.leftMargin: 5
+        }
+
+        // Представление
+        PathView {
+            id: view
+            anchors.fill: parent
+            model: modelForPathCurveRect
+            delegate: iconDelegate
+            focus: true
+
+            path:  Path {
+                id: myPath
+
+                // Стартовая позиция и атрибуты
+                startX: 150; startY: 250
+                PathAttribute{name: "itemOpacity"; value: 1}
+                PathAttribute{name: "scaleItem"; value: 1.1}
+
+                // L - Left
+                PathCurve { x: 50; y: 150 }
+                PathAttribute{name: "itemOpacity"; value: 0.3}
+                PathAttribute{name: "scaleItem"; value: 0.8}
+
+                // T - Top
+                PathCurve { x: 150; y: 50 }
+
+                // R - Right
+                PathCurve { x: 250; y: 150 }
+                PathAttribute{name: "itemOpacity"; value: 0.3}
+                PathAttribute{name: "scaleItem"; value: 0.8}
+
+                // B - Bottom
+                PathCurve { x: 150; y: 250 }
+                PathAttribute{name: "itemOpacity"; value: 1}
+                PathAttribute{name: "scaleItem"; value: 1.1}
+            }
+
+            Keys.onLeftPressed: incrementCurrentIndex();
+            Keys.onRightPressed: decrementCurrentIndex();
+        }
+    }
+}
